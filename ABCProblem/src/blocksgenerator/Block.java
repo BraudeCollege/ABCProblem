@@ -16,4 +16,12 @@ public class Block<CharA, CharB> {
 	public Character getB() {
 		return _b;
 	}
+	
+	public String toString() {
+		return "[" + _a + ", " + _b + "]";
+	}
+	
+	public static void main(String[] args) {
+		Block<Character, Character> b = new Block<Character, Character>('a', 'b');
+	}
 }

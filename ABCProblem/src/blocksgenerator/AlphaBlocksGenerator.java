@@ -14,6 +14,10 @@ public class AlphaBlocksGenerator {
 	private ArrayList<Block <Character, Character>> _alphaBlocks;
 	private int _maxBlocks = 20;
 	
+	public AlphaBlocksGenerator() {
+		_alphaBlocks = new ArrayList<Block <Character, Character>>();
+	}
+	
 	public AlphaBlocksGenerator(int maxBlocks) {
 		_maxBlocks = maxBlocks;
 		_alphaBlocks = new ArrayList<Block <Character, Character>>();
@@ -64,6 +68,10 @@ public class AlphaBlocksGenerator {
 		Random rand = new Random();
 		int randNum = rand.nextInt(ALPHABET.size());
 		return randNum;
+	}
+	
+	public ArrayList<Block <Character, Character>> getBlocks() {
+		return _alphaBlocks;
 	}
 	
 	public void display() {
