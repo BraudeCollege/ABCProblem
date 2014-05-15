@@ -36,55 +36,39 @@ public class AlphaBlockRing {
 	}
 	
 	public void visitBlocks() {
-		int counter = 0;
 		int index = _head;
 		int wordIndex = 0;
-		String word = "box";
+		String word = "box"; //match, try "bxo" to see no match
 		
 		
 		while (true) {
-			if (index == _blocks.size()) {
-				index = 0; //wrap back to the beginning
-			}
+			Block<Character, Character> block = _blocks.get(index);
 			
-			/*
-			 * Check for matching character
-			 * 		If doesn't match, break immediately
-			 * 		else
-			 * 		continue
-			 */
-			
-			Character a = _blocks.get(index).getA();
-			Character b = _blocks.get(index).getB();
-			
-			//test if the letters for the test word are present consecutively
-			if (a == word.charAt(wordIndex)) {
-				System.out.println("Good match at " + a);
-				
-				if (wordIndex == word.length() - 1) {
-					break;
-				} else {
+			if (word.charAt(wordIndex) == block.getA()) {
+				if (wordIndex != word.length() - 1) {
 					wordIndex++;
+				} else {
+					break;
 				}
-			} 
-			
-			if (b == word.charAt(wordIndex)) {
-				System.out.println("Good match at " + b);
 				
-				if (wordIndex == word.length() - 1) {
-					break;
+				if (word.charAt(wordIndex) == block.getB()) {
+					if (wordIndex != word.length() - 1) {
+						wordIndex++;
+					}
 				} else {
-					wordIndex++;
+					break;
 				}
 			}
-			
-			//check if the letters aren't present consecutively
-			
-			
-			//System.out.println("Block: " + index + " " + _blocks.get(index).toString());
-			
-			index++;
-			counter++;
+				if (wordIndex == word.length() - 1) {
+					System.out.println("Match");
+					break;
+				}
+				
+				if (index == _size - 1) {
+					index = 0; //wraparound
+				}
+				index++;
+				block = _blocks.get(index);
 		}
 	}
 	
